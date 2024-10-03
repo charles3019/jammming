@@ -1,0 +1,58 @@
+.Header { grid-area: header; 
+  background-color: rgb(41, 107, 148);
+  height: 75px;
+  
+  padding-left: 10px;
+  
+  }
+.Banner { grid-area: banner; 
+  background-color: rgba(17, 0, 255, 0.846);
+  height: 200px;
+  background-image: url("../images/banner.jpg");
+  font-size: 32px;
+  text-align: center;
+  
+}
+.SearchBar{
+  grid-area: searchBar;
+  background-color: rgba(218, 17, 17, 0.362);
+  height: 50px;
+  text-align: center;
+}
+.Left { grid-area: leftCol; 
+  background-color: white;
+  border-right: 2px beige solid;
+  padding-left: 10px;
+  
+  height: auto;
+}
+.Right { grid-area: rightCol;
+  background-color: rgb(255, 255, 255);
+  border-left: 2px rgb(222, 222, 23) solid;
+  padding-left: 10px;
+  height: auto;
+}
+
+.Footer { grid-area: footer; 
+  background-color: rgb(230, 230, 20);
+  height: 50px;
+  text-align: center;
+
+}
+
+.App {
+  display: grid;
+  
+  grid-template-areas:
+    'header header'
+    'banner banner'
+    'searchBar searchBar'
+    'leftCol rightCol'
+    'footer footer';
+  width: 95%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+  height: auto;
+  row-gap: 10px;
+  
+}

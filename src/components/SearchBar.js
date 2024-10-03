@@ -1,30 +1,25 @@
-import React from 'react';
-import styles from '../styles/SearchBar.module.css'
+import React, { useState, useCallback } from "react";
 
-const SearchBar = (props) => {
+function SearchBar(props) {
+  const [term, setTerm] = useState("");
 
+  const handleTermChange = useCallback((event) => {
+    setTerm(event.target.value);
+  }, []);
 
-    const handleSearch = (e) => {
-        e.preventDefault();
-        props.handleSearch(props.searchValue); // Call the handleSearch function passed from App
-        console.log(props.searchResults)
-    };
+  const search = useCallback(() => {
+    props.onSearch(term);
+  }, [props.onSearch, term]);
 
   return (
-    <>
-        <div className={styles.form}>
-            <input 
-                id='search' 
-                placeholder='Search' 
-                type='text' 
-                value={props.searchValue || ''} 
-                onChange={props.handleSearchValue}
-            />
-            <button onClick={handleSearch}>Search</button>
-        </div>
-    </>
-  )
-}
-
+    <div className="SearchBar">
+      <input placeholder="Enter A Song Title" onChange={handleTermChange} />
+      <button className="SearchButton" onClick={search}>
+        SEARCH
+      </button>
+    </div>
+  );
+ 
+};
 
 export default SearchBar;

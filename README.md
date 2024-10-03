@@ -1,18 +1,36 @@
-Welcome to Jamming
-Jamming is a portfolio project showcasing my ability to learn APIs on the fly. This project utilizes the Spotify API to search for songs on Spotify and create playlists that can be saved to your Spotify account.
+# Title: 
+Project Jammming
 
-Features
-Search for songs on Spotify
-Create playlists with selected songs
-Save playlists to your Spotify account
-Technologies Used
-React.js
-Spotify API
-How to Use
-Clone the repository to your local machine.
-Install dependencies by running npm install.
-Run the project locally with npm start.
-Open the application in your browser and start searching for songs!
-To save a playlist to your Spotify account, you'll need to sign in with your Spotify credentials.
-Credits
-This project was developed by Charles agyemang as a portfolio project.
+## The purpose of the project:
+This project demonstrates the use of React components, passing state, and requests with the Spotify API to build a website.
+
+##  Technologies used
+Project is created with:
+* HTML
+* CSS (grid)
+* JavaScript
+* React
+* HTTP Requests and Responses
+* Authentication
+
+## Features
+The project allows users to:
+* search the Spotify library, 
+* create a custom playlist, 
+* then save it to their Spotify account.
+## Screenshots
+### Figure 1: Webpage with the search bar
+
+![Webpage with the search bar](src/images/screeshot1.jpg)
+
+### Figure 2: Webpage after the result has been fetched and displayed
+
+![Webpage with fetched results](src/images/screeshot2.jpg)
+
+### Figure 3: Sportify dashboard showing the Playlist create from the project page
+
+![Sportify dashboard with created Playlist](src/images/screeshot3.jpg)
+
+
+## Future work
+The future work will a scale up to send requestes to multiple music APIs
