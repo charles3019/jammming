@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from "react";
 import './css/App.css';
 
-import Playlist from "./components/PlayList";
+import Playlist from "./components/Playlist";
 import SearchBar from "./components/SearchBar";
 import SearchResults from "./components/SearchResults";
 import Spotify from "./util/Spotify";
