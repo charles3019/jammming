@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import Tracklist from "./Tracklist";
 
-function PlayList(props) {
+function Playlist(props) {
   const handleNameChange = useCallback(
     (event) => {
       props.onNameChange(event.target.value);
