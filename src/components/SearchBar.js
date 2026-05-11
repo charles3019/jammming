@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 
-function SearchBar(props) {
+function SearchBar({ onSearch }) {
   const [term, setTerm] = useState("");
 
   const handleTermChange = useCallback((event) => {
@@ -8,8 +8,8 @@ function SearchBar(props) {
   }, []);
 
   const search = useCallback(() => {
-    props.onSearch(term);
-  }, [props.onSearch, term]);
+    onSearch(term);
+  }, [onSearch, term]);
 
   return (
     <div className="SearchBar">

@@ -1,23 +1,23 @@
 import React, { useCallback } from "react";
 
-function Track(props) {
+function Track({ track, onAdd, onRemove, isRemoval }) {
 
   const addTrack = useCallback(
     (event) => {
-      props.onAdd(props.track);
+      onAdd(track);
     },
-    [props.onAdd, props.track]
+    [onAdd, track]
   );
 
   const removeTrack = useCallback(
     (event) => {
-      props.onRemove(props.track);
+      onRemove(track);
     },
-    [props.onRemove, props.track]
+    [onRemove, track]
   );
 
   const renderAction = () => {
-    if (props.isRemoval) {
+    if (isRemoval) {
       return (
         <button className="Track-action" onClick={removeTrack}>
           -
@@ -34,9 +34,9 @@ function Track(props) {
   return (
     <div className="Track">
       <div className="Track-information">
-        <h3>{props.track.name}</h3>
+        <h3>{track.name}</h3>
         <p>
-          {props.track.artist} | {props.track.album}
+          {track.artist} | {track.album}
         </p>
       </div>
       {renderAction()}
