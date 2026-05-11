@@ -10,8 +10,21 @@ function App() {
 	const [searchResults, setSearchResults] = useState([]);
   const [playlistName, setPlaylistName] = useState("New Playlist");
   const [playlistTracks, setPlaylistTracks] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  const [error, setError] = useState(null);
+
   const search = useCallback((term) => {
-    Spotify.search(term).then(setSearchResults);
+    setIsSearching(true);
+    setError(null);
+    Spotify.search(term).then((results) => {
+      setSearchResults(results);
+      setIsSearching(false);
+    }).catch((err) => {
+      console.error('Search error:', err);
+      setError('Failed to search. Please try again.');
+      setIsSearching(false);
+    });
   }, []);
 
   const addTrack = useCallback(
@@ -35,14 +48,25 @@ function App() {
   }, []);
 
   const savePlaylist = useCallback(() => {
+    if (!playlistName.trim() || playlistTracks.length === 0) {
+      setError('Please enter a playlist name and add some tracks.');
+      return;
+    }
+
+    setIsSaving(true);
+    setError(null);
     const trackUris = playlistTracks.map((track) => track.uri);
     Spotify.savePlaylist(playlistName, trackUris).then(() => {
       setPlaylistName("New Playlist");
       setPlaylistTracks([]);
+      setIsSaving(false);
+      alert('Playlist saved successfully!');
+    }).catch((err) => {
+      console.error('Save error:', err);
+      setError('Failed to save playlist. Please check your Spotify connection.');
+      setIsSaving(false);
     });
   }, [playlistName, playlistTracks]);
-
-
 
   return (
     
@@ -56,24 +80,22 @@ function App() {
         
       </div>
       <div className="SearchBar">
-      <p></p>
-      <SearchBar onSearch={search} />
+      <SearchBar onSearch={search} isSearching={isSearching} />
+      {error && <div className="error-message">{error}</div>}
         
         
         </div>
 
-      <div className="Left">
+      <div className="main-content">
         
-        <SearchResults searchResults={searchResults} onAdd={addTrack} />
-      </div>
-      <div className="Right">
-        
+        <SearchResults searchResults={searchResults} onAdd={addTrack} isSearching={isSearching} />
         <Playlist
             playlistName={playlistName}
             playlistTracks={playlistTracks}
             onNameChange={updatePlaylistName}
             onRemove={removeTrack}
             onSave={savePlaylist}
+            isSaving={isSaving}
           />
 
       </div>
