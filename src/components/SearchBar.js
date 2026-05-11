@@ -8,12 +8,18 @@ function SearchBar({ onSearch }) {
   }, []);
 
   const search = useCallback(() => {
-    onSearch(term);
+    const trimmedTerm = term.trim();
+    if (!trimmedTerm) return;
+    onSearch(trimmedTerm);
   }, [onSearch, term]);
 
   return (
     <div className="SearchBar">
-      <input placeholder="Enter A Song Title" onChange={handleTermChange} />
+      <input
+        value={term}
+        placeholder="Enter A Song Title"
+        onChange={handleTermChange}
+      />
       <button className="SearchButton" onClick={search}>
         SEARCH
       </button>

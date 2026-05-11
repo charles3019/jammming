@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import TrackList from "./TrackList";
 
-function Playlist({ playlistTracks, onNameChange, onRemove, onSave }) {
+function Playlist({ playlistName, playlistTracks, onNameChange, onRemove, onSave }) {
   const handleNameChange = useCallback(
     (event) => {
       onNameChange(event.target.value);
@@ -12,7 +12,7 @@ function Playlist({ playlistTracks, onNameChange, onRemove, onSave }) {
   return (
     <div className="Playlist">
       <h2>Playlist</h2>
-      <input onChange={handleNameChange} defaultValue={"New Playlist"} />
+      <input value={playlistName} onChange={handleNameChange} />
       <TrackList
         tracks={playlistTracks}
         isRemoval={true}
